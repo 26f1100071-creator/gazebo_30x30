@@ -1,0 +1,18 @@
+T-1 
+
+ source /opt/ros/jazzy/setup.bash
+
+ gz sim ~/gazebo_30x30/worlds/arena_30x30.sdf
+
+T-2
+
+source /opt/ros/jazzy/setup.bash
+
+python3 ~/gazebo_30x30/arena_robot/route1_ball.py
+
+
+T-3
+
+source /opt/ros/jazzy/setup.bash
+
+python3 ~/gazebo_30x30/arena_robot/route2_ball.py

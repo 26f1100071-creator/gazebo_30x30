@@ -1,0 +1,16 @@
+# Editor temporary files
+*.swp
+*.swo
+*~
+
+# ROS 2 build files
+build/
+install/
+log/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Gazebo temporary files
+*.log

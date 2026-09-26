@@ -1,0 +1,1016 @@
+<?xml version="1.0" ?>
+<sdf version="1.9">
+  <world name="arena_30x30">
+
+    <!-- Physics -->
+    <physics name="1ms" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+
+    <!-- Lighting -->
+    <light name="sun" type="directional">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 20 0 0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <direction>-0.5 0.5 -1</direction>
+    </light>
+
+    <!-- Ground -->
+    <model name="ground">
+      <static>true</static>
+      <link name="link">
+
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>30 30 0.1</size>
+            </box>
+          </geometry>
+        </collision>
+
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>30 30 0.1</size>
+            </box>
+          </geometry>
+        </visual>
+
+      </link>
+    </model>
+
+    <!-- North wall -->
+    <model name="wall_north">
+      <static>true</static>
+      <pose>0 15 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>30 0.2 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>30 0.2 2</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- South wall -->
+    <model name="wall_south">
+      <static>true</static>
+      <pose>0 -15 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>30 0.2 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>30 0.2 2</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- East wall -->
+    <model name="wall_east">
+      <static>true</static>
+      <pose>15 0 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.2 30 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 30 2</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+    <!-- West wall -->
+    <model name="wall_west">
+      <static>true</static>
+      <pose>-15 0 1 0 0 0</pose>
+      <link name="link">
+        <collision name="collision">
+          <geometry>
+            <box>
+              <size>0.2 30 2</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box>
+              <size>0.2 30 2</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+    </model>
+
+
+  <!-- Position and rotation of the ramp -->
+<!-- ========================================================= -->
+<!-- ROUTE 1: DIRECT NORTH → SOUTH 3D RAMP                    -->
+<!-- ========================================================= -->
+
+<!-- POINT A / NORTH GROUND AREA -->
+<model name="route1_point_A">
+  <static>true</static>
+  <pose>0 10 0.05 0 0 0</pose>
+
+  <link name="link">
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>4.0 2.0 0.1</size>
+        </box>
+      </geometry>
+    </collision>
+
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>4.0 2.0 0.1</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.1 0.8 0.1 1</ambient>
+        <diffuse>0.1 0.8 0.1 1</diffuse>
+      </material>
+    </visual>
+  </link>
+</model>
+
+
+<!-- ========================================================= -->
+<!-- ASCENDING RAMP                                            -->
+<!-- NORTH → SOUTH                                             -->
+<!-- ========================================================= -->
+
+<model name="route1_ascending_ramp">
+  <static>true</static>
+
+  <!-- x=0, y=6.5, elevated toward SOUTH -->
+  <pose>0 6.0 0.85 -0.21337 0 0</pose>
+
+  <link name="ramp_link">
+
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>4.0 6.139 0.3</size>
+        </box>
+      </geometry>
+    </collision>
+
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>4.0 6.139 0.3</size>
+        </box>
+      </geometry>
+
+      <material>
+        <ambient>0.5 0.5 0.5 1</ambient>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.2 0.2 0.2 1</specular>
+      </material>
+    </visual>
+
+  </link>
+</model>
+
+
+<!-- ========================================================= -->
+<!-- ELEVATED STRAIGHT SECTION                                 -->
+<!-- ========================================================= -->
+
+<model name="route1_elevated_platform">
+  <static>true</static>
+
+  <pose>0 1.0 1.5 0 0 0</pose>
+
+  <link name="platform_link">
+
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>4.0 5.0 0.3</size>
+        </box>
+      </geometry>
+    </collision>
+
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>4.0 5.0 0.3</size>
+        </box>
+      </geometry>
+
+      <material>
+        <ambient>0.5 0.5 0.5 1</ambient>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.2 0.2 0.2 1</specular>
+      </material>
+    </visual>
+
+  </link>
+</model>
+
+
+<!-- ========================================================= -->
+<!-- DESCENDING RAMP                                            -->
+<!-- ========================================================= -->
+
+<model name="route1_descending_ramp">
+  <static>true</static>
+
+  <!-- x=0, y=-4.5 -->
+  <pose>0 -4.43 0.85 0.2187 0 0</pose>
+
+  <link name="ramp_link">
+
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>4.0 6.0 0.3</size>
+        </box>
+      </geometry>
+    </collision>
+
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>4.0 6.0 0.3</size>
+        </box>
+      </geometry>
+
+      <material>
+        <ambient>0.5 0.5 0.5 1</ambient>
+        <diffuse>0.5 0.5 0.5 1</diffuse>
+        <specular>0.2 0.2 0.2 1</specular>
+      </material>
+    </visual>
+
+  </link>
+</model>
+
+
+<!-- ========================================================= -->
+<!-- POINT B / SOUTH GROUND AREA                               -->
+<!-- ========================================================= -->
+
+<model name="route1_point_B">
+  <static>true</static>
+  <pose>0 -10 0.05 0 0 0</pose>
+
+  <link name="link">
+
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>4.0 2.0 0.1</size>
+        </box>
+      </geometry>
+    </collision>
+
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>4.0 2.0 0.1</size>
+	</box>
+      </geometry>
+
+      <material>
+        <ambient>0.8 0.1 0.1 1</ambient>
+	<diffuse>0.8 0.1 0.1 1</diffuse>
+      </material>
+    </visual>
+
+  </link>
+</model>
+
+<!-- ========================================================= -->
+<!-- MOVING BALL - ROUTE 1                                     -->
+<!-- ========================================================= -->
+
+<model name="moving_ball_route1">
+  <static>true</static>
+
+  <pose>0 10 0.40 0 0 0</pose>
+
+  <link name="ball_link">
+
+    <!-- Ball -->
+    <visual name="ball_visual">
+      <geometry>
+        <sphere>
+          <radius>0.35</radius>
+        </sphere>
+      </geometry>
+
+      <material>
+        <ambient>0.1 0.3 1.0 1</ambient>
+        <diffuse>0.1 0.3 1.0 1</diffuse>
+      </material>
+    </visual>
+
+    <!-- Visible rolling marker -->
+    <visual name="rolling_marker">
+      <pose>0 0 0 0 1.5708 0</pose>
+
+      <geometry>
+        <cylinder>
+          <radius>0.025</radius>
+          <length>0.65</length>
+        </cylinder>
+      </geometry>
+
+      <material>
+        <ambient>1 1 1 1</ambient>
+        <diffuse>1 1 1 1</diffuse>
+      </material>
+    </visual>
+
+  </link>
+</model>
+
+<!-- ========================================================= -->
+<!-- ROUTE 2 : ZIG-ZAG GROUND FLOOR PATH                      -->
+<!-- Completely flat driving surface: z = 0                   -->
+<!-- A -> WEST -> ZIG-ZAG -> EAST -> B                        -->
+<!-- ========================================================= -->
+
+
+<!-- ========================================================= -->
+<!-- GREEN START / NORTH ENTRY                                -->
+<!-- A = (0, 10, 0)                                            -->
+<!-- Connects A to west-side corridor                         -->
+<!-- ========================================================= -->
+
+<model name="zigzag_north_entry">
+  <static>true</static>
+  <pose>-1.5 8.0 0.05 0 0 0</pose>
+
+  <link name="link">
+
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>3.0 1.0 0.1</size>
+        </box>
+      </geometry>
+    </collision>
+
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>3.0 1.0 0.1</size>
+        </box>
+      </geometry>
+
+      <material>
+        <ambient>0 1 0 1</ambient>
+        <diffuse>0 1 0 1</diffuse>
+        <emissive>0 0.2 0 1</emissive>
+      </material>
+    </visual>
+
+  </link>
+</model>
+
+
+<!-- ========================================================= -->
+<!-- ROUTE 2 WEST OUTER WALL                                   -->
+<!-- ========================================================= -->
+
+<model name="zigzag_west_wall">
+  <static>true</static>
+  <pose>-13.0 0 1.0 0 0 0</pose>
+
+  <link name="link">
+
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>0.2 16.0 2.0</size>
+        </box>
+      </geometry>
+    </collision>
+
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>0.2 16.0 2.0</size>
+        </box>
+      </geometry>
+
+      <material>
+        <ambient>1 1 1 1</ambient>
+        <diffuse>1 1 1 1</diffuse>
+      </material>
+    </visual>
+
+  </link>
+</model>
+
+
+<!-- ========================================================= -->
+<!-- ROUTE 2 EAST OUTER WALL                                   -->
+<!-- ========================================================= -->
+
+<model name="zigzag_east_wall">
+  <static>true</static>
+  <pose>-3.0 0 1.0 0 0 0</pose>
+
+  <link name="link">
+
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>0.2 16.0 2.0</size>
+        </box>
+      </geometry>
+    </collision>
+
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>0.2 16.0 2.0</size>
+        </box>
+      </geometry>
+
+      <material>
+        <ambient>1 1 1 1</ambient>
+        <diffuse>1 1 1 1</diffuse>
+      </material>
+    </visual>
+
+  </link>
+</model>
+
+
+<!-- ========================================================= -->
+<!-- BARRIER 1                                                 -->
+<!-- GAP ON EAST                                               -->
+<!-- ========================================================= -->
+
+<model name="zigzag_barrier_1">
+  <static>true</static>
+  <pose>-8.5 7.0 1.0 0 0 0</pose>
+
+  <link name="link">
+
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>9.0 0.2 2.0</size>
+        </box>
+      </geometry>
+    </collision>
+
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>9.0 0.2 2.0</size>
+        </box>
+      </geometry>
+
+      <material>
+        <ambient>1 1 1 1</ambient>
+        <diffuse>1 1 1 1</diffuse>
+      </material>
+    </visual>
+
+  </link>
+</model>
+
+
+<!-- ========================================================= -->
+<!-- BARRIER 2                                                 -->
+<!-- GAP ON WEST                                               -->
+<!-- ========================================================= -->
+
+<model name="zigzag_barrier_2">
+  <static>true</static>
+  <pose>-7.5 3.0 1.0 0 0 0</pose>
+
+  <link name="link">
+
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>9.0 0.2 2.0</size>
+        </box>
+      </geometry>
+    </collision>
+
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>9.0 0.2 2.0</size>
+        </box>
+      </geometry>
+
+      <material>
+        <ambient>1 1 1 1</ambient>
+        <diffuse>1 1 1 1</diffuse>
+      </material>
+    </visual>
+
+  </link>
+</model>
+
+
+<!-- ========================================================= -->
+<!-- BARRIER 3                                                 -->
+<!-- GAP ON EAST                                               -->
+<!-- ========================================================= -->
+
+<model name="zigzag_barrier_3">
+  <static>true</static>
+  <pose>-8.5 -1.0 1.0 0 0 0</pose>
+
+  <link name="link">
+
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>9.0 0.2 2.0</size>
+        </box>
+      </geometry>
+    </collision>
+
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>9.0 0.2 2.0</size>
+        </box>
+      </geometry>
+
+      <material>
+        <ambient>1 1 1 1</ambient>
+        <diffuse>1 1 1 1</diffuse>
+      </material>
+    </visual>
+
+  </link>
+</model>
+
+
+<!-- ========================================================= -->
+<!-- BARRIER 4                                                 -->
+<!-- GAP ON WEST                                               -->
+<!-- ========================================================= -->
+
+<model name="zigzag_barrier_4">
+  <static>true</static>
+  <pose>-7.5 -5.0 1.0 0 0 0</pose>
+
+  <link name="link">
+
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>9.0 0.2 2.0</size>
+        </box>
+      </geometry>
+    </collision>
+
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>9.0 0.2 2.0</size>
+        </box>
+      </geometry>
+
+      <material>
+        <ambient>1 1 1 1</ambient>
+        <diffuse>1 1 1 1</diffuse>
+      </material>
+    </visual>
+
+  </link>
+</model>
+
+
+<!-- ========================================================= -->
+<!-- SOUTH EXIT                                                -->
+<!-- Connects west corridor back to B                         -->
+<!-- B = (0, -10, 0)                                           -->
+<!-- RED                                                        -->
+<!-- ========================================================= -->
+
+<model name="zigzag_south_exit">
+  <static>true</static>
+  <pose>-1.5 -8.0 0.05 0 0 0</pose>
+
+  <link name="link">
+
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>3.0 1.0 0.1</size>
+        </box>
+      </geometry>
+    </collision>
+
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>3.0 1.0 0.1</size>
+        </box>
+      </geometry>
+
+      <material>
+        <ambient>1 0 0 1</ambient>
+        <diffuse>1 0 0 1</diffuse>
+        <emissive>0.2 0 0 1</emissive>
+      </material>
+    </visual>
+
+  </link>
+</model>
+
+<!-- ========================================================= -->
+<!-- MOVING BALL - ROUTE 2 ZIG-ZAG                            -->
+<!-- ========================================================= -->
+
+<model name="moving_ball_route2">
+  <static>true</static>
+
+  <pose>-3.17 10.0 0.40 0 0 0</pose>
+
+  <link name="ball_link">
+
+    <visual name="ball_visual">
+      <geometry>
+        <sphere>
+          <radius>0.35</radius>
+        </sphere>
+      </geometry>
+
+      <material>
+        <ambient>1.0 0.15 0.05 1</ambient>
+        <diffuse>1.0 0.15 0.05 1</diffuse>
+      </material>
+    </visual>
+
+    <visual name="rolling_marker">
+      <pose>0 0 0 0 1.5708 0</pose>
+
+      <geometry>
+        <cylinder>
+          <radius>0.025</radius>
+          <length>0.65</length>
+        </cylinder>
+      </geometry>
+
+      <material>
+        <ambient>1 1 1 1</ambient>
+        <diffuse>1 1 1 1</diffuse>
+      </material>
+    </visual>
+
+  </link>
+</model>
+
+<!-- ========================================================= -->
+<!-- WAREHOUSE STORAGE RACKS                                   -->
+<!-- Open industrial-style shelving                            -->
+<!-- ========================================================= -->
+
+
+<!-- ========================================================= -->
+<!-- RACK 1                                                    -->
+<!-- ========================================================= -->
+
+<model name="warehouse_rack_1">
+  <static>true</static>
+  <pose>7.5 7.0 0 0 0 0</pose>
+
+  <!-- LEFT FRONT POST -->
+  <link name="post_1">
+    <pose>-2.35 -0.40 1.25 0 0 0</pose>
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>0.20 0.20 2.50</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>0.20 0.20 2.50</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.30 0.30 0.30 1</ambient>
+        <diffuse>0.30 0.30 0.30 1</diffuse>
+      </material>
+    </visual>
+  </link>
+
+  <!-- RIGHT FRONT POST -->
+  <link name="post_2">
+    <pose>2.35 -0.40 1.25 0 0 0</pose>
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>0.20 0.20 2.50</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>0.20 0.20 2.50</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.30 0.30 0.30 1</ambient>
+        <diffuse>0.30 0.30 0.30 1</diffuse>
+      </material>
+    </visual>
+  </link>
+
+  <!-- LEFT BACK POST -->
+  <link name="post_3">
+    <pose>-2.35 0.40 1.25 0 0 0</pose>
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>0.20 0.20 2.50</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>0.20 0.20 2.50</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.30 0.30 0.30 1</ambient>
+        <diffuse>0.30 0.30 0.30 1</diffuse>
+      </material>
+    </visual>
+  </link>
+
+  <!-- RIGHT BACK POST -->
+  <link name="post_4">
+    <pose>2.35 0.40 1.25 0 0 0</pose>
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>0.20 0.20 2.50</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>0.20 0.20 2.50</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.30 0.30 0.30 1</ambient>
+        <diffuse>0.30 0.30 0.30 1</diffuse>
+      </material>
+    </visual>
+  </link>
+
+  <!-- LOWER SHELF -->
+  <link name="shelf_1">
+    <pose>0 0 0.35 0 0 0</pose>
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>5.0 1.0 0.12</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>5.0 1.0 0.12</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.55 0.55 0.55 1</ambient>
+        <diffuse>0.55 0.55 0.55 1</diffuse>
+      </material>
+    </visual>
+  </link>
+
+  <!-- MIDDLE SHELF -->
+  <link name="shelf_2">
+    <pose>0 0 1.20 0 0 0</pose>
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>5.0 1.0 0.12</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>5.0 1.0 0.12</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.55 0.55 0.55 1</ambient>
+        <diffuse>0.55 0.55 0.55 1</diffuse>
+      </material>
+    </visual>
+  </link>
+
+  <!-- UPPER SHELF -->
+  <link name="shelf_3">
+    <pose>0 0 2.05 0 0 0</pose>
+    <collision name="collision">
+      <geometry>
+        <box>
+          <size>5.0 1.0 0.12</size>
+        </box>
+      </geometry>
+    </collision>
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>5.0 1.0 0.12</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.55 0.55 0.55 1</ambient>
+        <diffuse>0.55 0.55 0.55 1</diffuse>
+      </material>
+    </visual>
+  </link>
+
+</model>
+
+
+<!-- ========================================================= -->
+<!-- RACK 2                                                    -->
+<!-- ========================================================= -->
+
+<model name="warehouse_rack_2">
+  <static>true</static>
+  <pose>7.5 2.5 0 0 0 0</pose>
+
+  <link name="post_1">
+    <pose>-2.35 -0.40 1.25 0 0 0</pose>
+    <collision name="collision">
+      <geometry><box><size>0.20 0.20 2.50</size></box></geometry>
+    </collision>
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>0.20 0.20 2.50</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.30 0.30 0.30 1</ambient>
+        <diffuse>0.30 0.30 0.30 1</diffuse>
+      </material>
+    </visual>
+  </link>
+
+  <link name="post_2">
+    <pose>2.35 -0.40 1.25 0 0 0</pose>
+    <collision name="collision">
+      <geometry><box><size>0.20 0.20 2.50</size></box></geometry>
+    </collision>
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>0.20 0.20 2.50</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.30 0.30 0.30 1</ambient>
+        <diffuse>0.30 0.30 0.30 1</diffuse>
+      </material>
+    </visual>
+  </link>
+
+  <link name="post_3">
+    <pose>-2.35 0.40 1.25 0 0 0</pose>
+    <collision name="collision">
+      <geometry><box><size>0.20 0.20 2.50</size></box></geometry>
+    </collision>
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>0.20 0.20 2.50</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.30 0.30 0.30 1</ambient>
+        <diffuse>0.30 0.30 0.30 1</diffuse>
+      </material>
+    </visual>
+  </link>
+
+  <link name="post_4">
+    <pose>2.35 0.40 1.25 0 0 0</pose>
+    <collision name="collision">
+      <geometry><box><size>0.20 0.20 2.50</size></box></geometry>
+    </collision>
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>0.20 0.20 2.50</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.30 0.30 0.30 1</ambient>
+        <diffuse>0.30 0.30 0.30 1</diffuse>
+      </material>
+    </visual>
+  </link>
+
+  <link name="shelf_1">
+    <pose>0 0 0.35 0 0 0</pose>
+    <collision name="collision">
+      <geometry><box><size>5.0 1.0 0.12</size></box></geometry>
+    </collision>
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>5.0 1.0 0.12</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.55 0.55 0.55 1</ambient>
+        <diffuse>0.55 0.55 0.55 1</diffuse>
+      </material>
+    </visual>
+  </link>
+
+  <link name="shelf_2">
+    <pose>0 0 1.20 0 0 0</pose>
+    <collision name="collision">
+      <geometry><box><size>5.0 1.0 0.12</size></box></geometry>
+    </collision>
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>5.0 1.0 0.12</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.55 0.55 0.55 1</ambient>
+        <diffuse>0.55 0.55 0.55 1</diffuse>
+      </material>
+    </visual>
+  </link>
+
+  <link name="shelf_3">
+    <pose>0 0 2.05 0 0 0</pose>
+    <collision name="collision">
+      <geometry><box><size>5.0 1.0 0.12</size></box></geometry>
+    </collision>
+    <visual name="visual">
+      <geometry>
+        <box>
+          <size>5.0 1.0 0.12</size>
+        </box>
+      </geometry>
+      <material>
+        <ambient>0.55 0.55 0.55 1</ambient>
+        <diffuse>0.55 0.55 0.55 1</diffuse>
+      </material>
+    </visual>
+  </link>
+</model>
+
+
+  </world>
+</sdf>
